@@ -1,7 +1,7 @@
 ---
-title: About organizing and sharing context with GitHub Copilot Spaces
+title: About GitHub Copilot Spaces
 shortTitle: Spaces
-intro: Understand how gathering context with {% data variables.copilot.copilot_spaces %} can improve your results and help your teammates.
+intro: Understand how organizing and sharing context with {% data variables.copilot.copilot_spaces %} can improve your {% data variables.copilot.copilot_chat_dotcom_short %} results and help your collaborators.
 permissions: Anyone with a {% data variables.product.prodname_copilot_short %} license can use {% data variables.copilot.copilot_spaces_short %}.
 versions:
   feature: copilot
@@ -11,12 +11,15 @@ redirect_from:
   - /copilot/using-github-copilot/copilot-spaces/about-organizing-and-sharing-context-with-copilot-spaces
   - /copilot/concepts/about-organizing-and-sharing-context-with-copilot-spaces
   - /copilot/concepts/spaces
+  - /copilot/concepts/context/knowledge-bases
+  - /copilot/how-tos/provide-context/use-knowledge-bases
+  - /copilot/how-tos/provide-context/create-knowledge-bases
 contentType: concepts
+category:
+  - Learn about Copilot
 ---
 
-{% data reusables.copilot.copilot-spaces.preview-note %}
-
-{% data variables.copilot.copilot_spaces %} let you organize the context that {% data variables.product.prodname_copilot_short %} uses to answer your questions. {% data variables.copilot.copilot_spaces_short %} can include repositories, code, pull requests, issues, free-text content like transcripts or notes, images, and file uploads. You can ask {% data variables.product.prodname_copilot_short %} questions grounded in that context, or share the space with your team to support collaboration and knowledge sharing.
+{% data variables.copilot.copilot_spaces %} let you organize the context that {% data variables.product.prodname_copilot_short %} uses to answer your questions. {% data variables.copilot.copilot_spaces_short %} can include repositories, code, pull requests, issues, free-text content like transcripts or notes, images, and file uploads. You can ask {% data variables.product.prodname_copilot_short %} questions grounded in that context, or share the space with your team, or share publicly, to support collaboration and knowledge sharing.
 
 ## Why use {% data variables.copilot.copilot_spaces %}?
 
@@ -29,28 +32,35 @@ With {% data variables.copilot.copilot_spaces %} you can:
 * Reduce repeated questions by sharing knowledge with your team.
 * Support onboarding and reuse with self-service context that lives beyond chat history.
 
-### How are {% data variables.copilot.copilot_spaces_short %} different from knowledge bases?
-
-{% data variables.copilot.copilot_spaces_short %} are optimized for specific tasks and grounded conversations. Because context in {% data variables.copilot.copilot_spaces_short %} is scoped, {% data variables.product.prodname_copilot_short %}'s responses are more accurate and relevant.
-
-{% rowheaders %}
-
-|                      | {% data variables.copilot.copilot_spaces %}         | Knowledge bases                                             |
-| -------------------- | --------------------------- | -------------------------------------------------------------- |
-| Who can create   | Anyone with a {% data variables.product.prodname_copilot_short %} license             | Organization owners                                              |
-| Owned by   | Organizations or individual users              | Organizations                             |
-| Content type     | Entire {% data variables.product.github %} repositories, specific files, pull requests and issues, uploaded files including images, text files, rich documents, and spreadsheets, and free-text content                   | Markdown files hosted in {% data variables.product.github %} |
-| Context handling | Limited in size, which guarantees higher response quality given the focused selection | Unlimited, but that comes with reduced response quality |
-
-{% endrowheaders %}
+Your spaces stay in sync as your project evolves. {% data variables.product.github %} files and other {% data variables.product.github %}-based sources added to a space are automatically updated as they change, making {% data variables.product.prodname_copilot_short %} an evergreen expert in your project.
 
 ## Who can use {% data variables.copilot.copilot_spaces_short %}?
 
 Anyone with a {% data variables.product.prodname_copilot_short %} license, including {% data variables.copilot.copilot_free_short %}, can create and use {% data variables.copilot.copilot_spaces_short %}.
 
-During the {% data variables.release-phases.public_preview %}, if you're using a {% data variables.copilot.copilot_business_short %} or {% data variables.copilot.copilot_enterprise_short %} plan, the organization or enterprise that provides your plan must have the **Opt in to preview features** setting enabled. See [AUTOTITLE](/enterprise-cloud@latest/copilot/managing-copilot/managing-github-copilot-in-your-organization/managing-policies-for-copilot-in-your-organization#enabling-copilot-features-in-your-organization) or [AUTOTITLE](/enterprise-cloud@latest/copilot/managing-copilot/managing-copilot-for-your-enterprise/managing-policies-and-features-for-copilot-in-your-enterprise#copilot-in-githubcom).
+## Who can I share {% data variables.copilot.copilot_spaces_short %} with?
 
-{% data variables.copilot.copilot_spaces_short %} can belong to a personal account or to an organization. Spaces owned by an organization can be shared with other organization members or kept private to the person who created the space.
+{% data variables.copilot.copilot_spaces_short %} can belong to a personal account or to an organization, and the sharing options differ depending on who the space belongs to.
+
+### Organization-owned spaces
+
+Organization-owned spaces can be shared with other organization members, and you decide which level of access you want to grant other members (admin, editor, viewer).
+
+Alternatively, you can choose to grant "No access" to organization members, and keep the space hidden.
+
+### Individual-owned spaces
+
+Spaces belonging to a personal account can be shared publicly, shared with specific {% data variables.product.github %} users, or kept private to the person who created the space.
+
+Publicly shared spaces are view-only by default.
+
+Viewers can only see sources that they have access to.
+
+Eligibility to create or use {% data variables.copilot.copilot_spaces_short %} is user-based and depends on the organization that grants the user a {% data variables.product.prodname_copilot_short %} seat. Currently, the system does not block the creation of a space under an organization that has not configured {% data variables.copilot.copilot_spaces_short %}, or has {% data variables.copilot.copilot_spaces_short %} disabled. This means users can create spaces in such organizations if their {% data variables.product.prodname_copilot_short %} seat comes from another organization where {% data variables.copilot.copilot_spaces_short %} are enabled.
+
+## Where can I use {% data variables.copilot.copilot_spaces_short %}?
+
+You can use {% data variables.copilot.copilot_spaces %} in {% data variables.copilot.copilot_chat_dotcom_short %}. You can also leverage {% data variables.copilot.copilot_spaces %} in your IDE, using the {% data variables.product.github %} MCP server in your IDE to access context from your spaces.
 
 ## How does using {% data variables.copilot.copilot_spaces_short %} affect my usage?
 
@@ -61,4 +71,4 @@ Questions you submit in a space count as {% data variables.copilot.copilot_chat_
 
 ## Next steps
 
-To start using {% data variables.copilot.copilot_spaces_short %}, see [AUTOTITLE](/copilot/using-github-copilot/copilot-spaces/creating-and-using-copilot-spaces).
+To start using {% data variables.copilot.copilot_spaces_short %}, see [AUTOTITLE](/copilot/how-tos/provide-context/use-copilot-spaces/create-copilot-spaces).

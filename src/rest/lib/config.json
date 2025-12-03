@@ -17,6 +17,12 @@
     ],
     "ghes-3.17": [
       "2022-11-28"
+    ],
+    "ghes-3.18": [
+      "2022-11-28"
+    ],
+    "ghes-3.19": [
+      "2022-11-28"
     ]
   },
   "versionMapping": {
@@ -44,5 +50,5 @@
       ]
     }
   },
-  "sha": "1fffcfe35ca7da072adbfa86a242f20fa0c17f9f"
+  "sha": "dafe0f9ac291168cb41ccc752fbdde576ae44f63"
 }

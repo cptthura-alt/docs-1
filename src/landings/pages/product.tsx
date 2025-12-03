@@ -172,19 +172,22 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
   const additionalUINamespaces: string[] = []
 
   // This looks a little funky, but it's so we only send one context's data to the client
-  // TODO: TEMP: This is a temporary solution to turn off/on new landing pages while we develop them
-  if (currentLayoutName === 'bespoke-landing' || req.query?.feature === 'bespoke-landing') {
+  if (currentLayoutName === 'bespoke-landing') {
     props.bespokeContext = await getLandingContextFromRequest(req, 'bespoke')
-    additionalUINamespaces.push('bespoke_landing', 'product_landing')
-  } else if (currentLayoutName === 'journey-landing' || req.query?.feature === 'journey-landing') {
+    additionalUINamespaces.push('product_landing')
+  } else if (currentLayoutName === 'journey-landing') {
     props.journeyContext = await getLandingContextFromRequest(req, 'journey')
+
+    // journey tracks are resolved in middleware and added to the request
+    // so we need to add them to the journey context here
+    if ((req.context.page as any).resolvedJourneyTracks) {
+      props.journeyContext.journeyTracks = (req.context.page as any).resolvedJourneyTracks
+    }
+
     additionalUINamespaces.push('journey_landing', 'product_landing')
-  } else if (
-    currentLayoutName === 'discovery-landing' ||
-    req?.query?.feature === 'discovery-landing'
-  ) {
+  } else if (currentLayoutName === 'discovery-landing') {
     props.discoveryContext = await getLandingContextFromRequest(req, 'discovery')
-    additionalUINamespaces.push('discovery_landing', 'product_landing')
+    additionalUINamespaces.push('product_landing')
   } else if (currentLayoutName === 'product-landing') {
     props.productLandingContext = await getProductLandingContextFromRequest(req)
     additionalUINamespaces.push('product_landing')
@@ -207,6 +210,9 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
     props.articleContext = getArticleContextFromRequest(req)
     if (props.articleContext.currentLearningTrack?.trackName) {
       additionalUINamespaces.push('learning_track_nav')
+    }
+    if (props.articleContext.currentJourneyTrack?.trackId) {
+      additionalUINamespaces.push('journey_track_nav')
     }
   }
 
